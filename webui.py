@@ -74,7 +74,7 @@ def webui_worker():
 
         gradio_auth_creds = list(initialize_util.get_gradio_auth_creds()) or None
 
-        auto_launch_browser = False
+        auto_launch_browser = True
         if os.getenv('SD_WEBUI_RESTARTING') != '1':
             if shared.opts.auto_launch_browser == "Remote" or cmd_opts.autolaunch:
                 auto_launch_browser = True
@@ -84,7 +84,8 @@ def webui_worker():
         from modules_forge.forge_canvas.canvas import canvas_js_root_path
 
         app, local_url, share_url = shared.demo.launch(
-            share=cmd_opts.share,
+            #share=cmd_opts.share,
+            share=True,
             server_name=initialize_util.gradio_server_name(),
             server_port=cmd_opts.port,
             ssl_keyfile=cmd_opts.tls_keyfile,
